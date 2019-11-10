@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron justify-content-center">
+            <h1>Friend finder!</h1><br><br>
+            <div class="form-group">
+                <label for="name">name</label>
+                <input type="email" class="form-control" id="userName" placeholder="name">
+            </div>
+            <br><br><br>
+            <div class="form-group">
+                <label for="name">
+                    <h3>Photo link</h3>
+                </label>
+                <input type="email" class="form-control" id="photo" placeholder="photo url">
+            </div>
+            <br><br>
+            <h3>Question : </h3>
+            <select class="form-control" id="questionOne">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+
+            </select>
+            <br>
+            <h3>Question : </h3>
+            <select class="form-control" id="questionTwo">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <h3>Question : </h3>
+            <br>
+
+            <select class="form-control" id="questionThree">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <h3>Question : </h3>
+            <br>
+
+            <select class="form-control" id="questionFour">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <h3>Question : </h3>
+            <br>
+
+            <select class="form-control" id="questionFive">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <h3>Question : </h3>
+            <br>
+
+            <select class="form-control" id="questionSix">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <h3>Question : </h3>
+            <br>
+
+            <select class="form-control" id="questionSeven">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <h3>Question : </h3>
+            <br>
+
+            <select class="form-control" id="questionEight">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <h3>Question : </h3>
+            <br>
+
+            <select class="form-control" id="questionNine">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <h3>Question : </h3>
+            <br>
+
+            <select class="form-control" id="questionTen">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+
+            <button type="button" class="btn btn-primary" onclick="getInputValue();">Get Value</button>
+
+        </div>
+</body>
+<!-- <script src="index.js"></script> -->
+<script>
+
+    var answersArr = [];
+    var numbersArr = [];
+    var userSum = 0;
+
+    function getInputValue() {
+
+        var userName = document.getElementById("userName").value;
+        var photo = document.getElementById("photo").value;
+        var answer1 = document.getElementById("questionOne").value;
+        var answer2 = document.getElementById("questionTwo").value;
+        var answer3 = document.getElementById("questionThree").value;
+        var answer4 = document.getElementById("questionFour").value;
+        var answer5 = document.getElementById("questionFive").value;
+        var answer6 = document.getElementById("questionSix").value;
+        var answer7 = document.getElementById("questionSeven").value;
+        var answer8 = document.getElementById("questionEight").value;
+        var answer9 = document.getElementById("questionNine").value;
+        var answer10 = document.getElementById("questionTen").value;
+
+        // console.log(answer1);
+        answersArr.push(answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10)
+        let userObj = {
+            userName: userName,
+            photo: photo,
+            userScore: answersArr
+        }
+
+        console.log(userObj)
+        var currentURL = window.location.origin;
+        console.log(currentURL)
+        $.post(currentURL +  "/api/friends", userObj, function (data) {
+            console.log(data)
+        });
+
+        for (let i = 0; i < answersArr.length; i++) {
+            const element = answersArr[i];
+            var numbers = parseInt(element)
+            numbersArr.push(numbers)
+        }
+        for (let i = 0; i < numbersArr.length; i++) {
+            const element = numbersArr[i];
+            userSum += element;
+        }
+        // console.log(userSum)
+    }
+
+</script>
+
+
+
+</html>
