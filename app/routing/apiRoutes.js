@@ -13,7 +13,7 @@ for (var i = 0; i < friends.length; i++) {
            var element = friends[i].scores[j];
            sum += element
            //save the sum for each element in friends. Maybe as a property in friend object
-           console.log("This is the sum for " + friends[i] + ": " + sum)
+        //    console.log("This is the sum for " + friends[i] + ": " + sum)
        }
    }
 
@@ -42,34 +42,31 @@ module.exports = function (app) {
         var userInfo = request.body
         var minimumDifference = 40;
 
-        // console.log(userInfo.userScore);
         
         for (let i = 0; i < userInfo.userScore.length; i++) {
             const element = userInfo.userScore[i];
             var numbers = parseInt(element)
-            // numbersArr.push(numbers)
             userSum += numbers;
             console.log(`Line 55: ${userSum}`)
         }
    
+        for (var i = 0; i < friends.length; i++) {
+            var totalDifference = 0;
+            var element = friends[i].scores.length
+            console.log(element)
+            for (var j = 0; j < friends[i].scores.length; j++) {
+                var difference = Math.abs(userInfo.userScore[j] - friends[i].scores[j]);
+                totalDifference += difference;
+                console.log(`line 62 ${totalDifference}`)
+            }
+            if (totalDifference < minimumDifference) {
+                friendIndex = i;
+                minimumDifference = totalDifference;
+                console.log(`Line 67 ${friendIndex}`);
+                console.log(`Line 68 ${minimumDifference}`);
 
-
-
-
-
-        // for (var i = 0; i < friends.length; i++) {
-        //     var totalDifference = 0;
-        //     var element = friends[i].scores.length
-        //     console.log(element)
-        //     for (var j = 0; j < friends[i].scores.length; j++) {
-        //         var difference = Math.abs(userInfo.scores[j] - friends[i].scores[j]);
-        //         totalDifference += difference;
-        //     }
-        //     if (totalDifference < minimumDifference) {
-        //         bestFriendIndex = i;
-        //         minimumDifference = totalDifference;
-        //     }
-        // }
+            }
+        }
 
 
     })
