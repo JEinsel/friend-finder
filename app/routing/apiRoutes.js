@@ -1,6 +1,21 @@
 const friends = require("../data/friends")
-var sum = 0;
 var path = require("path")
+var sum = 0;
+var converted;
+var totalDifference;
+var answersArr = [];
+var numbersArr = [];
+var userSum = 0;
+
+for (var i = 0; i < friends.length; i++) {
+    sum = 0;
+       for (var j = 0; j < friends[i].scores.length; j++) {
+           var element = friends[i].scores[j];
+           sum += element
+           //save the sum for each element in friends. Maybe as a property in friend object
+           console.log("This is the sum for " + friends[i] + ": " + sum)
+       }
+   }
 
 
 module.exports = function (app) {
@@ -9,29 +24,53 @@ module.exports = function (app) {
         response.json(friends)
     })
 
+
     app.get("/", function (request, response) {
         response.sendFile(path.join(__dirname, "../public/index.html"));
     });
-    
+
     app.get("/questionaire", function (request, response) {
         response.sendFile(path.join(__dirname, "../public/questionaire.html"));
     });
-    
+
 
     app.post("/api/friends", function (request, response) {
         console.log("Hello World")
         console.log(request.body)
-        response.send(`Information from user ${request.body}`)
-        // for (let i = 0; i < friends.length; i++) {
-        //     const element = friends[i];
+        response.send(`Information from user ${request.body} name : ${request.body.userName} photo: ${request.body.photo} score ${request.body.userScore}`)
+
+        var userInfo = request.body
+        var minimumDifference = 40;
+
+        // console.log(userInfo.userScore);
+        
+        for (let i = 0; i < userInfo.userScore.length; i++) {
+            const element = userInfo.userScore[i];
+            var numbers = parseInt(element)
+            // numbersArr.push(numbers)
+            userSum += numbers;
+            console.log(`Line 55: ${userSum}`)
+        }
+   
+
+
+
+
+
+        // for (var i = 0; i < friends.length; i++) {
+        //     var totalDifference = 0;
+        //     var element = friends[i].scores.length
         //     console.log(element)
-        // }
-        // for (let i = 0; i < friends.length; i++) {
-        //     const element = friends[i].scores;
-        //     sum += element[i]
+        //     for (var j = 0; j < friends[i].scores.length; j++) {
+        //         var difference = Math.abs(userInfo.scores[j] - friends[i].scores[j]);
+        //         totalDifference += difference;
+        //     }
+        //     if (totalDifference < minimumDifference) {
+        //         bestFriendIndex = i;
+        //         minimumDifference = totalDifference;
+        //     }
         // }
 
-        //
-        // friends.push(request.body)
+
     })
 }

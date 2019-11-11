@@ -130,6 +130,18 @@
 
             <button type="button" class="btn btn-primary" onclick="getInputValue();">Get Value</button>
 
+            <div class="container">
+                <div id="name">Your name</div>
+                <div id="photo">Your photo</div>
+                <div id="score">Your scores</div>
+                <br><br>
+                
+                <div id="friendName"></div>
+                <div id="friendPhoto"></div>
+                <div id="friendScore"></div>
+
+            </div>
+
         </div>
 </body>
 <!-- <script src="index.js"></script> -->
@@ -165,10 +177,7 @@
         console.log(userObj)
         var currentURL = window.location.origin;
         console.log(currentURL)
-        $.post(currentURL +  "/api/friends", userObj, function (data) {
-            console.log(data)
-        });
-
+        
         for (let i = 0; i < answersArr.length; i++) {
             const element = answersArr[i];
             var numbers = parseInt(element)
@@ -179,8 +188,14 @@
             userSum += element;
         }
         // console.log(userSum)
-    }
+        $.post(currentURL + "/api/friends", userObj, function (data) {
+            console.log(data)
+            $("#name").text(`Your name - ${userObj.userName}`);
+            $("#photo").text(`Your photo -  ${userObj.photo}`);
+            $("#score").text(`Your sum - ${userSum}`);
 
+        });
+    }
 </script>
 
 
