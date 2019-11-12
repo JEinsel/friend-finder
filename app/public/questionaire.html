@@ -28,7 +28,7 @@
                 <input type="email" class="form-control" id="photo" placeholder="photo url">
             </div>
             <br><br>
-            <h3>Question : </h3>
+            <h3>Question : Do you consider yourself affectionate</h3>
             <select class="form-control" id="questionOne">
                 <option>1</option>
                 <option>2</option>
@@ -166,7 +166,6 @@
         var answer9 = document.getElementById("questionNine").value;
         var answer10 = document.getElementById("questionTen").value;
 
-        // console.log(answer1);
         answersArr.push(answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10)
         let userObj = {
             userName: userName,
@@ -187,13 +186,14 @@
             const element = numbersArr[i];
             userSum += element;
         }
-        // console.log(userSum)
         $.post(currentURL + "/api/friends", userObj, function (data) {
-            console.log(data)
             $("#name").text(`Your name - ${userObj.userName}`);
             $("#photo").text(`Your photo -  ${userObj.photo}`);
             $("#score").text(`Your sum - ${userSum}`);
 
+            $("#friendName").text(`Your friends Name ${data.friends[friendIndex].name}`)
+            $("#friendPhoto").text(`Your friends Photo ${data.friends[friendIndex].photo}`)
+            $("#friendScore").text(`Differences in score ${data.totalDifference}`)
         });
     }
 </script>
