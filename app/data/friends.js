@@ -9,7 +9,7 @@ var friends = [
     "scores": [3,5,5,2,1,4,4,3,2,5]
 },{
     "name": "John",
-    "photo": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "photo": "https://i.imgur.com/H37kxPH.jpg",
     "scores": [2,3,1,2,1,4,4,3,2,5]
 }
 ]

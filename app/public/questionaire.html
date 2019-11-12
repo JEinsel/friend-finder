@@ -132,12 +132,19 @@
 
             <div class="container">
                 <div id="name">Your name</div>
-                <div id="photo">Your photo</div>
+
+                <span display:inline-block>
+                        <img id="photo" src="">
+                    </span>
+                <!-- <div id="photo">Your photo</div> -->
                 <div id="score">Your scores</div>
                 <br><br>
-                
+
                 <div id="friendName"></div>
-                <div id="friendPhoto"></div>
+                <!-- <div id="friendPhoto"></div> -->
+                <span display:inline-block>
+                    <img id="friendPhoto" src="">
+                </span>
                 <div id="friendScore"></div>
 
             </div>
@@ -176,7 +183,7 @@
         console.log(userObj)
         var currentURL = window.location.origin;
         console.log(currentURL)
-        
+
         for (let i = 0; i < answersArr.length; i++) {
             const element = answersArr[i];
             var numbers = parseInt(element)
@@ -188,12 +195,15 @@
         }
         $.post(currentURL + "/api/friends", userObj, function (data) {
             $("#name").text(`Your name - ${userObj.userName}`);
+            // document.getElementById("photo").innerHTML=`${userObj.photo}`
             $("#photo").text(`Your photo -  ${userObj.photo}`);
             $("#score").text(`Your sum - ${userSum}`);
+            console.log(data)
+            $("#friendName").text(`Your friendsame ${data.friendName}`)
+            // document.getElementById("friendPhoto").innerHTML=`${data.friendPhoto}`
 
-            $("#friendName").text(`Your friends Name ${data.friends[friendIndex].name}`)
-            $("#friendPhoto").text(`Your friends Photo ${data.friends[friendIndex].photo}`)
-            $("#friendScore").text(`Differences in score ${data.totalDifference}`)
+            $("#friendPhoto").text(`Your friends Photo ${data.friendPhoto}`)
+            $("#friendScore").text(`Differences in score ${data.friendDifference}`)
         });
     }
 </script>

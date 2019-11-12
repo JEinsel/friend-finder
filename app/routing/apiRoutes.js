@@ -33,7 +33,6 @@ module.exports = function (app) {
             const element = userInfo.userScore[i];
             var numbers = parseInt(element)
             userSum += numbers;
-            console.log(`Line 55: ${userSum}`)
         }
         for (var i = 0; i < friends.length; i++) {
             var totalDifference = 0;
@@ -42,15 +41,17 @@ module.exports = function (app) {
             for (var j = 0; j < friends[i].scores.length; j++) {
                 var difference = Math.abs(userInfo.userScore[j] - friends[i].scores[j]);
                 totalDifference += difference;
-                console.log(`line 62 ${totalDifference}`)
             }
             if (totalDifference < minimumDifference) {
                 friendIndex = i;
                 minimumDifference = totalDifference;
-                console.log(`Line 67 ${friendIndex}`);
-                console.log(`Line 68 ${minimumDifference}`);
             }
         }
-        response.send(`friends ${friends} friendIndex ${friendIndex} totalDifference ${totalDifference} `)
+        let resultsObj = {
+            friendName : friends[friendIndex].name,
+            friendPhoto : friends[friendIndex].photo,
+            friendDifference : minimumDifference 
+        }
+        response.send(resultsObj)
     })
 }
