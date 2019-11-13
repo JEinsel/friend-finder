@@ -143,7 +143,7 @@
                 <div id="friendName"></div>
                 <!-- <div id="friendPhoto"></div> -->
                 <span display:inline-block>
-                    <img id="friendPhoto" src="">
+                    <img id="friendPhoto" src="" style="max-height:300px;max-width:300px">
                 </span>
                 <div id="friendScore"></div>
 
@@ -196,13 +196,18 @@
         $.post(currentURL + "/api/friends", userObj, function (data) {
             $("#name").text(`Your name - ${userObj.userName}`);
             // document.getElementById("photo").innerHTML=`${userObj.photo}`
-            $("#photo").text(`Your photo -  ${userObj.photo}`);
+            // $("#photo").text(`Your photo -  ${userObj.photo}`);
+            $("#friendPhoto").attr("src", userObj.photo)
+
             $("#score").text(`Your sum - ${userSum}`);
             console.log(data)
             $("#friendName").text(`Your friendsame ${data.friendName}`)
             // document.getElementById("friendPhoto").innerHTML=`${data.friendPhoto}`
 
-            $("#friendPhoto").text(`Your friends Photo ${data.friendPhoto}`)
+            $("#friendPhoto").attr("src", data.friendPhoto)
+
+
+            // $("#friendPhoto").text(`Your friends Photo ${data.friendPhoto}`)
             $("#friendScore").text(`Differences in score ${data.friendDifference}`)
         });
     }
