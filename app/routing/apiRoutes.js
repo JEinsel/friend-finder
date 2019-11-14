@@ -3,14 +3,16 @@ var path = require("path")
 var sum = 0;
 var totalDifference;
 var userSum = 0;
+var friendIndex = 0;
 
 for (var i = 0; i < friends.length; i++) {
     sum = 0;
-       for (var j = 0; j < friends[i].scores.length; j++) {
-           var element = friends[i].scores[j];
-           sum += element
-       }
-   }
+    for (var j = 0; j < friends[i].scores.length; j++) {
+        var element = friends[i].scores[j];
+        sum += element
+    }
+}
+
 
 
 module.exports = function (app) {
@@ -48,9 +50,9 @@ module.exports = function (app) {
             }
         }
         let resultsObj = {
-            friendName : friends[friendIndex].name,
-            friendPhoto : friends[friendIndex].photo,
-            friendDifference : minimumDifference 
+            friendName: friends[friendIndex].name,
+            friendPhoto: friends[friendIndex].photo,
+            friendDifference: minimumDifference
         }
         response.send(resultsObj)
     })

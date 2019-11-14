@@ -1,11 +1,11 @@
 var friends = [
     {
     "name": "Ahmed",
-    "photo": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "photo": "https://i.imgur.com/0OXyb26.jpg",
     "scores": [5,1,4,4,5,1,2,5,4,1]
 }, {
     "name": "Phillip",
-    "photo": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "photo": "https://i.imgur.com/XgbZdeA.jpg",
     "scores": [3,5,5,2,1,4,4,3,2,5]
 },{
     "name": "John",
