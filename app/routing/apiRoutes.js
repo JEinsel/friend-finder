@@ -13,8 +13,6 @@ for (var i = 0; i < friends.length; i++) {
     }
 }
 
-
-
 module.exports = function (app) {
     app.get("/api/friends", function (request, response) {
         response.json(friends)
